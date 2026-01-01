@@ -1,0 +1,160 @@
+# Bigtool Tool Pool Configuration
+# Defines available tools for each capability category
+
+ocr:
+  google_vision:
+    enabled: true
+    api_key_env: GOOGLE_VISION_KEY
+    cost_per_call: 0.001
+    priority: 1
+    capabilities:
+      - high_accuracy
+      - multi_language
+      - pdf_support
+  tesseract:
+    enabled: true
+    binary_path: /usr/bin/tesseract
+    cost_per_call: 0.0
+    priority: 2
+    capabilities:
+      - local_execution
+      - open_source
+  aws_textract:
+    enabled: false
+    api_key_env: AWS_ACCESS_KEY_ID
+    cost_per_call: 0.0015
+    priority: 3
+    capabilities:
+      - cloud_based
+      - high_volume
+
+enrichment:
+  clearbit:
+    enabled: true
+    api_key_env: CLEARBIT_API_KEY
+    cost_per_call: 0.01
+    priority: 1
+    capabilities:
+      - company_data
+      - domain_enrichment
+  people_data_labs:
+    enabled: false
+    api_key_env: PEOPLE_DATA_LABS_API_KEY
+    cost_per_call: 0.02
+    priority: 2
+    capabilities:
+      - person_data
+      - contact_info
+  vendor_db:
+    enabled: true
+    db_path: ./data/vendor_db.sqlite
+    cost_per_call: 0.0
+    priority: 3
+    capabilities:
+      - local_database
+      - fast_lookup
+
+erp:
+  sap_sandbox:
+    enabled: true
+    url_env: SAP_SANDBOX_URL
+    cost_per_call: 0.0
+    priority: 1
+    capabilities:
+      - po_retrieval
+      - grn_retrieval
+      - posting
+  netsuite:
+    enabled: false
+    api_key_env: NETSUITE_API_KEY
+    cost_per_call: 0.05
+    priority: 2
+    capabilities:
+      - full_erp_integration
+  mock_erp:
+    enabled: true
+    mode: demo
+    cost_per_call: 0.0
+    priority: 3
+    capabilities:
+      - testing
+      - demo_mode
+
+db:
+  postgres:
+    enabled: false
+    connection_string_env: DATABASE_URL
+    cost_per_call: 0.0
+    priority: 1
+    capabilities:
+      - production_ready
+      - transactions
+  sqlite:
+    enabled: true
+    db_path: ./invoice_processing.db
+    cost_per_call: 0.0
+    priority: 2
+    capabilities:
+      - local_storage
+      - easy_setup
+  dynamodb:
+    enabled: false
+    region_env: AWS_REGION
+    cost_per_call: 0.0001
+    priority: 3
+    capabilities:
+      - cloud_scale
+      - serverless
+
+email:
+  sendgrid:
+    enabled: false  # Disabled by default (requires API key)
+    api_key_env: SENDGRID_API_KEY
+    cost_per_call: 0.0001
+    priority: 1
+    capabilities:
+      - transactional_emails
+      - high_deliverability
+  smartlead:
+    enabled: false
+    api_key_env: SMARTLEAD_API_KEY
+    cost_per_call: 0.0002
+    priority: 2
+    capabilities:
+      - bulk_emails
+      - automation
+  ses:
+    enabled: false
+    region_env: AWS_SES_REGION
+    cost_per_call: 0.00005
+    priority: 3
+    capabilities:
+      - aws_integration
+      - cost_effective
+  mock_email:
+    enabled: true
+    mode: demo
+    cost_per_call: 0.0
+    priority: 4
+    capabilities:
+      - demo_mode
+      - always_available
+
+storage:
+  local_fs:
+    enabled: true
+    base_path: ./data/invoices
+    cost_per_call: 0.0
+    priority: 1
+    capabilities:
+      - local_storage
+      - fast_access
+  s3:
+    enabled: false
+    bucket_env: S3_BUCKET_NAME
+    cost_per_call: 0.00001
+    priority: 2
+    capabilities:
+      - cloud_storage
+      - scalable
+
