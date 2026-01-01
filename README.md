@@ -99,8 +99,4 @@ Edit `src/config/workflow.json` to customize workflow behavior and `src/config/t
 pytest tests/ -v
 ```
 
-## Development
-
-See `interview/task.txt` for detailed implementation notes and architecture.
-
 

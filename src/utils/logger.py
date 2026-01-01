@@ -51,7 +51,7 @@ class JSONFormatter(logging.Formatter):
 
 def setup_logger(name: str, level: Optional[str] = None) -> logging.Logger:
     """
-    Set up a structured logger.
+    Set up a structured logger with both console and file output.
     
     Args:
         name: Logger name (typically __name__)
@@ -74,6 +74,16 @@ def setup_logger(name: str, level: Optional[str] = None) -> logging.Logger:
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(JSONFormatter())
     logger.addHandler(console_handler)
+    
+    # Create file handler for persistent logging
+    log_dir = Path("./logs")
+    log_dir.mkdir(exist_ok=True)
+    
+    # Create log file with timestamp
+    log_filename = log_dir / f"workflow_{datetime.utcnow().strftime('%Y%m%d')}.log"
+    file_handler = logging.FileHandler(log_filename, encoding='utf-8')
+    file_handler.setFormatter(JSONFormatter())
+    logger.addHandler(file_handler)
     
     # Prevent propagation to root logger
     logger.propagate = False

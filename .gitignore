@@ -47,6 +47,7 @@ ENV/
 # Logs
 *.log
 logs/
+!logs/.gitkeep
 
 # Data files (keep structure, ignore content)
 data/
