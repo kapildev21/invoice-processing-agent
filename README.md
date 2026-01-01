@@ -103,7 +103,4 @@ pytest tests/ -v
 
 See `interview/task.txt` for detailed implementation notes and architecture.
 
-## License
-
-MIT
 
